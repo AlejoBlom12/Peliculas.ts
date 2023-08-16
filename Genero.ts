@@ -28,4 +28,6 @@ export class Genero {
     private setGenero (genero:string){
         this.genero = genero
     }
+
+    
 }
