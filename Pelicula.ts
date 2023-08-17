@@ -1,20 +1,24 @@
+import { Alquiler } from "./Alquiler"
 import { Genero } from "./Genero"
 
 export class Pelicula {
     private nombre:string
     private director:string
-    private genero: Genero
     private duracion: number
     private anio: number
     private calificacion: number
-
-    constructor(nombre:string, director:string, duracion: number, genero:Genero , anio:number, calificacion: number){
+    private genero: Genero
+    private disponibilidad:Alquiler
+    
+    
+    constructor(nombre:string, director:string, duracion: number, genero:Genero , anio:number, calificacion: number, disponibilidad:Alquiler){
         this.nombre = nombre
         this.director = director
-        this.genero = genero
         this.duracion = duracion
         this.anio = anio
         this.calificacion = calificacion
+        this.genero = genero
+        this.disponibilidad = disponibilidad
     }
 
     //Getters:
@@ -42,6 +46,11 @@ export class Pelicula {
     public getGenero ( ): Genero{
         return this.genero
     }
+
+    public getDisponibilidad ( ): Alquiler{
+        return this.disponibilidad
+    }
+
     //Setters:
 
     private setNombre (nombre: string){
@@ -66,6 +75,10 @@ export class Pelicula {
 
     private setGenero (genero: Genero){
         this.genero = genero
+    }
+
+    private setDisponibilidad (disponibilidad: Alquiler){
+        this.disponibilidad = disponibilidad
     }
 
     //Metodos:
@@ -113,4 +126,40 @@ export class Pelicula {
         }
     }
     
+    public esSimilar(otraPelicula: Pelicula): boolean {
+            if(this.genero.getGenero === otraPelicula.genero.getGenero && this.calificacion === otraPelicula.calificacion){
+                return true
+            }
+            else{
+                return false
+            }
+          }
+    public alquilar(){
+            if (this.disponibilidad.diponibilidad == true) {
+              console.log("\nHas alquilado la película " , this.nombre , ", disfrútala.");
+            } 
+            else {
+              console.log("\nLa película " , this.nombre ," no está disponible en este momento.")
+            }
+       }
+
+    public Cartelera(otraPelicula:Pelicula){
+        if (this.disponibilidad.diponibilidad == false && otraPelicula.disponibilidad.diponibilidad == false){
+            console.log(this.nombre)
+            console.log(otraPelicula.getNombre())
+        }
+        else if (this.disponibilidad.diponibilidad == true && otraPelicula.disponibilidad.diponibilidad == false){
+            console.log(otraPelicula.getNombre())
+        }
+        else if (this.disponibilidad.diponibilidad == false && otraPelicula.disponibilidad.diponibilidad == true){
+            console.log(this.nombre)
+        }
+
+        else{
+            console.log("Lo hay peliculas disponibles.");
+            
+        }
+    }
+
 }
+    
