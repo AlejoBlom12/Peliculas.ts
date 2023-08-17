@@ -11,8 +11,8 @@ export class Genero {
 
     //Getter:
 
-    public getIdentificador ( ):number{
-        return this.identificador
+   public getIdentificador ( ):number{
+         return this.identificador
     }
 
     public getGenero ( ): string{
@@ -29,5 +29,5 @@ export class Genero {
         this.genero = genero
     }
 
-    
+
 }

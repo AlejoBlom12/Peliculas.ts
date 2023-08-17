@@ -3,15 +3,15 @@ import { Genero } from "./Genero"
 export class Pelicula {
     private nombre:string
     private director:string
-    private genero: Array <Genero>
+    private genero: Genero
     private duracion: number
     private anio: number
     private calificacion: number
 
-    constructor(nombre:string, director:string,genero:Genero, duracion: number, anio:number, calificacion: number){
+    constructor(nombre:string, director:string, duracion: number, genero:Genero , anio:number, calificacion: number){
         this.nombre = nombre
         this.director = director
-        this.genero = []
+        this.genero = genero
         this.duracion = duracion
         this.anio = anio
         this.calificacion = calificacion
@@ -39,6 +39,9 @@ export class Pelicula {
         return this.calificacion
     }
 
+    public getGenero ( ): Genero{
+        return this.genero
+    }
     //Setters:
 
     private setNombre (nombre: string){
@@ -61,32 +64,35 @@ export class Pelicula {
         this.calificacion = calificacion
     }
 
+    private setGenero (genero: Genero){
+        this.genero = genero
+    }
+
     //Metodos:
 
     public imprimir (){
         console.log("\nDATOS DE LA PELICULA: " 
         + "\n\nNombre: " + this.nombre 
         + "\nDirector: " + this.director
-        + "\nGenero: " + this.genero
+        + "\nGenero: " + this.genero.getGenero()
         + "\nDuracion: " + this.duracion
         + "\nAño: " + this.anio
         + "\nCalificacion: " + this.calificacion)
     }
 
-    private esPeliculaEpica ( ): boolean{
-        if ( this.duracion >= 180){
-        return true
+    public esEpica (): boolean{
+        if (this.duracion >= 180){
+            return true
         }
         else{
-        return false
+            return false
         }
     }
-
-    private calcularValoracion ( ){
-        if (this.calificacion >= 0 && this.calificacion <= 2){
-            return "Muy mala"
+    
+    public calcularCalificacion (){
+        if (this.calificacion >= 0 && this.calificacion <=2){
+           return "Muy mala" 
         }
-
         else if (this.calificacion > 2 && this.calificacion <= 5){
             return "Mala"
         }
@@ -95,22 +101,16 @@ export class Pelicula {
             return "Regular"
         }
 
-        else if (this.calificacion > 7 && this.calificacion <= 8){
+        else if (this.calificacion > 7 && this.calificacion <=8){
             return "Buena"
         }
 
-        else if (this.calificacion > 8 && this.calificacion <= 10){
-            return "Excelente"
+        else if(this.calificacion > 8 && this.calificacion <= 10){
+            return "Muy buena"
         }
-
         else{
-            console.log("Valoracion invalida.")
+            return "Calificacion invalida."
         }
-
-    
     }
     
-    
-
-
 }
